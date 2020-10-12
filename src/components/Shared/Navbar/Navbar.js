@@ -20,13 +20,13 @@ const Navbar = () => {
         <a className="nav-link mr-5" href="/dashboard/appointment">Dashboard</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link mr-5 text-white" href="/reviews">Reviews</a>
+        <a className={`nav-link mr-5 ${window.location.pathname === '/appointment' ? 'text-secondary' : 'text-white'} text-white`} href="/reviews">Reviews</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link mr-5 text-white" href="/blog">Blog</a>
+        <a className={`nav-link mr-5 ${window.location.pathname === '/appointment' ? 'text-secondary' : 'text-white'} text-white`} href="/blog">Blog</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link mr-5 text-white" href="#">Contact Us</a>
+        <a className={`nav-link mr-5 ${window.location.pathname === '/appointment' ? 'text-secondary' : 'text-white'} text-white`} href="#">Contact Us</a>
       </li>
     </ul>
   </div>

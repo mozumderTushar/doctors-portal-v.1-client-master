@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { useForm } from "react-hook-form";
+import { useHistory, useLocation } from 'react-router-dom';
 
 const customStyles = {
     content: {
@@ -18,6 +19,9 @@ Modal.setAppElement('#root')
 const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date }) => {
     const { register, handleSubmit, errors } = useForm();
     
+    const history = useHistory();
+    
+
     const onSubmit = data => {
         data.service = appointmentOn;
         data.date = date;
@@ -33,6 +37,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date }) => {
             if(success){
                 alert('Appointment created successfully.');
                 closeModal();
+                history.push('/dashboard/appointment')
             }
         })
         

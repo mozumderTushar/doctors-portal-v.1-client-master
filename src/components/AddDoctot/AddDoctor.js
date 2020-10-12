@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import Sidebar from '../Dashboard/Sidebar/Sidebar';
 
 const AddDoctor = () => {
     const [info, setInfo] = useState({})
     const [file, setFile] = useState(null)
+
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
 
     const handleBlur = e => {
         const newInfo = { ...info }
@@ -16,7 +21,8 @@ const AddDoctor = () => {
         setFile(newFile)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const formData = new FormData()
         formData.append('file', file);
         formData.append('name', info.name);
@@ -29,6 +35,7 @@ const AddDoctor = () => {
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                history.replace(from);
             })
             .catch(error => {
                 console.error(error)
@@ -41,15 +48,15 @@ const AddDoctor = () => {
                 <h5 className="text-brand">Add a Doctor</h5>
 
                 <form onSubmit={handleSubmit}>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input onBlur={handleBlur} type="email" class="form-control" name="email" placeholder="Enter email" />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="exampleInputPassword1">Name</label>
                         <input onBlur={handleBlur} type="text" class="form-control" name="name" placeholder="Enter Name" />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <input onChange={handleFileChange} type="file" class="form-control-file" id="exampleFormControlFile1" />
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
