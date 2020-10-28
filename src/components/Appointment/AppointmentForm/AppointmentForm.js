@@ -27,7 +27,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date }) => {
         data.date = date;
         data.created = new Date();
         
-        fetch('http://localhost:5000/addAppointment', {
+        fetch('https://quiet-shore-32489.herokuapp.com/addAppointment', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)
