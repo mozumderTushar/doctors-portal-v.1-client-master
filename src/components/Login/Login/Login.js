@@ -59,8 +59,7 @@ const Login = () => {
         }
         if (e.target.name === 'password') {
             const isPasswordValid = e.target.value.length >= 6;
-            //12345678@aA
-            const passwordHasNumber = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/.test(e.target.value)
+            const passwordHasNumber = /\d{1}/.test(e.target.value)
             const validPass = isPasswordValid && passwordHasNumber;
             isFieldValid = isPasswordValid && passwordHasNumber
         }
@@ -151,9 +150,6 @@ const Login = () => {
                                     <Form.Control onBlur={handleBlur} type="password" name="password" placeholder="Password" required />
                                 </Form.Group>
 
-                                {newUser && <Form.Group controlId="formBasicText">
-                                    <Form.Control onBlur={handleBlur} type="cpassword" name="name" placeholder="Confirm Password" required />
-                                </Form.Group>}
                                 {!newUser && <Form.Group controlId="formBasicCheckbox" className="d-flex ">
                                     <Form.Check type="checkbox" label="Remember Me" /> <p className="forgetPassword">Forget Password</p>
                                 </Form.Group>}
